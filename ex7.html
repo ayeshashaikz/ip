@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bus Ticket Booking</title>
+</head>
+<body>
+<h2>Bus Ticket Booking</h2>
+
+<select id="route">
+<option value="500">Chennai-Bangalore - Rs.500</option>
+<option value="800">Chennai-Hyderabad - Rs.800</option>
+</select><br><br>
+
+<input type="number" id="tickets"
+placeholder="Number of tickets" min="1">
+<button onclick="bookTicket()">Book Ticket</button>
+<p id="result"></p>
+
+<script>
+let seats = 10;
+
+function bookTicket() {
+ let fare = Number(document.getElementById("route").value);
+ let count = Number(document.getElementById("tickets").value);
+
+ if (count > 0 && count <= seats) {
+   seats -= count;
+   document.getElementById("result").innerText =
+   "Booking successful! Total fare: Rs. " +
+   (fare * count) + ". Seats left: " + seats;
+ } else {
+   document.getElementById("result").innerText =
+   "Invalid ticket count or seats unavailable";
+ }
+}
+</script>
+</body>
+</html>

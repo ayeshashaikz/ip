@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Flight Reservation</title>
+</head>
+<body>
+<h2>Flight Reservation System</h2>
+
+<select id="flight">
+<option value="3000">IndiGo - Rs.3000</option>
+<option value="4000">Air India - Rs.4000</option>
+</select><br><br>
+
+<input type="number" id="count"
+placeholder="Number of passengers" min="1">
+<button onclick="bookFlight()">Book Flight</button>
+<p id="result"></p>
+
+<script>
+let seats = 10;
+
+function bookFlight() {
+ let fare = Number(document.getElementById("flight").value);
+ let count = Number(document.getElementById("count").value);
+
+ if (count > 0 && count <= seats) {
+   seats -= count;
+   document.getElementById("result").innerText =
+   "Flight booked successfully! Total fare: Rs. " +
+   (fare * count) + ". Seats left: " + seats;
+ } else {
+   document.getElementById("result").innerText =
+   "Invalid passenger count or seats unavailable";
+ }
+}
+</script>
+</body>
+</html>

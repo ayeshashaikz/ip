@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Booking</title>
+</head>
+<body>
+
+<h2>Hotel Room Booking</h2>
+
+<label>Room Type:</label>
+<select id="room">
+    <option value="1000">Single - Rs.1000</option>
+    <option value="2000">Double - Rs.2000</option>
+    <option value="3000">Deluxe - Rs.3000</option>
+</select>
+<br><br>
+
+<input type="number" id="nights"
+       placeholder="Number of nights" min="1">
+
+<button onclick="bookRoom()">Book Room</button>
+
+<p id="result"></p>
+
+<script>
+function bookRoom() {
+    let room = document.getElementById("room");
+    let roomType = room.options[room.selectedIndex].text;
+    let price = Number(room.value);
+    let nights = Number(document.getElementById("nights").value);
+
+    if (nights > 0 && Number.isInteger(nights)) {
+        let total = price * nights;
+
+        document.getElementById("result").innerText =
+            "Room booked! Total: Rs. " + total;
+
+        let csv = "Room Type,Price per Night,Nights,Total Amount\n";
+        csv += roomType + "," + price + "," +
+               nights + "," + total + "\n";
+
+        let blob = new Blob([csv], {
+            type: "text/csv;charset=utf-8;"
+        });
+
+        let link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "hotel_bookings.csv";
+        link.click();
+
+        URL.revokeObjectURL(link.href);
+    } else {
+        document.getElementById("result").innerText =
+            "Enter a valid number of nights";
+    }
+}
+</script>
+
+</body>
+</html>

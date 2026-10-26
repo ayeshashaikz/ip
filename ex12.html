@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>InsureEasy</title>
+<style>
+body { font-family: Arial; margin: 25px; background: #eef4ff; }
+header { background: #164a8a; color: white; padding: 20px; }
+.card { background: white; padding: 15px; margin: 12px 0; }
+button { background: #164a8a; color: white; padding: 8px; }
+</style>
+</head>
+<body>
+<header>
+<h1>InsureEasy</h1>
+<p>Your protection, our priority</p>
+</header>
+
+<h2>Insurance Policies</h2>
+<div class="card">
+<h3>Health Insurance</h3>
+<p>Annual Premium: ₹5,000</p>
+<button onclick="selectPolicy('Health Insurance',5000)">
+Select Policy</button>
+</div>
+
+<div class="card">
+<h3>Vehicle Insurance</h3>
+<p>Annual Premium: ₹3,000</p>
+<button onclick="selectPolicy('Vehicle Insurance',3000)">
+Select Policy</button>
+</div>
+
+<div class="card">
+<h3>Home Insurance</h3>
+<p>Annual Premium: ₹4,000</p>
+<button onclick="selectPolicy('Home Insurance',4000)">
+Select Policy</button>
+</div>
+
+<h3 id="result">Select a policy to view details.</h3>
+
+<script>
+function selectPolicy(name, premium) {
+ document.getElementById("result").innerHTML =
+ "Selected Policy: " + name +
+ "<br>Annual Premium: ₹" + premium +
+ "<br>Renewal: After one year";
+}
+</script>
+</body>
+</html>

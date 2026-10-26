@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Train Reservation</title>
+</head>
+<body>
+<h2>Train Reservation System</h2>
+
+<select id="train">
+<option value="300">Express - Rs.300</option>
+<option value="500">Superfast - Rs.500</option>
+</select><br><br>
+
+<input type="number" id="passengers"
+placeholder="Number of passengers" min="1">
+<button onclick="reserve()">Reserve Ticket</button>
+<p id="result"></p>
+
+<script>
+let seats = 10;
+
+function reserve() {
+ let fare = Number(document.getElementById("train").value);
+ let count = Number(document.getElementById("passengers").value);
+
+ if (count > 0 && count <= seats) {
+   seats -= count;
+   let pnr = Math.floor(100000 + Math.random() * 900000);
+   document.getElementById("result").innerText =
+   "Reservation successful! PNR: " + pnr +
+   ". Total fare: Rs. " + (fare * count) +
+   ". Seats left: " + seats;
+ } else {
+   document.getElementById("result").innerText =
+   "Invalid passenger count or seats unavailable";
+ }
+}
+</script>
+</body>
+</html>

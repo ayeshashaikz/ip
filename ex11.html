@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home Finder</title>
+<style>
+body { font-family: Arial; margin: 25px; background: #eef5f9; }
+header { background: #176b55; color: white; padding: 20px; }
+.card { background: white; padding: 15px; margin: 12px 0; }
+button { padding: 8px; background: #176b55; color: white; }
+</style>
+</head>
+<body>
+<header>
+<h1>Home Finder</h1>
+<p>Find your dream property</p>
+</header>
+
+<h2>Search Properties</h2>
+<input id="location" placeholder="Enter location">
+<input id="budget" type="number" placeholder="Maximum budget">
+<button onclick="search()">Search</button>
+
+<div id="results"></div>
+
+<script>
+const properties = [
+ {name:"Green Villa", location:"Chennai", price:4500000},
+ {name:"City Apartment", location:"Hyderabad", price:3000000},
+ {name:"Dream House", location:"Chennai", price:6000000}
+];
+
+function search() {
+ const loc = document.getElementById("location")
+ .value.toLowerCase();
+ const budget = Number(document.getElementById("budget").value)
+ || Infinity;
+
+ const found = properties.filter(p =>
+ p.location.toLowerCase().includes(loc) &&
+ p.price <= budget
+ );
+
+ document.getElementById("results").innerHTML =
+ found.length ? found.map(p =>
+ `<div class="card">
+ <h3>${p.name}</h3>
+ <p>Location: ${p.location}</p>
+ <p>Price: ₹${p.price.toLocaleString("en-IN")}</p>
+ </div>`).join("") : "No properties found.";
+}
+search();
+</script>
+</body>
+</html>
